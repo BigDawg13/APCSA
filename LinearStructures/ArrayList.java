@@ -1,6 +1,9 @@
 package LinearStructures;
 
-public class ArrayList<E> { // Parameter ex. ArrayList<E>
+import java.lang.Iterable; // interface
+import java.util.Iterator;
+
+public class ArrayList<E> implements Iterable<E>{ // Parameter ex. ArrayList<E>
     // what is protected
     // protected is... public in the packege, private outside the package
     protected final static int INITIAL_CAPACITY = 10;
@@ -137,6 +140,27 @@ public class ArrayList<E> { // Parameter ex. ArrayList<E>
             E[] newData = (E[])(new Object[size]);
             System.arraycopy(data, 0, newData, 0, size);
             data = newData;
+        }
+    }
+    public Iterator<E> iterator() {
+        return new ArrayListIterator();
+    }
+
+    // a class inside a class?
+    private class ArrayListIterator implements Iterator<E> {
+        private int current = 0;
+
+        public boolean hasNext() {
+            return (current < size);
+        }
+
+        public E next() {
+            return data[current++];
+        }
+
+        public void remove() {
+            // ArrayList.this refers to 'this' of the enclosing class
+            ArrayList.this.remove(current);
         }
     }
 }
