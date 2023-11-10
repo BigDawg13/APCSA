@@ -3,7 +3,7 @@ package LinearStructures;
 import java.lang.Iterable; // interface
 import java.util.Iterator;
 
-public class ArrayList<E> implements Iterable<E>{ // Parameter ex. ArrayList<E>
+public class ArrayList<E> implements Iterable<E> { // Parameter ex. ArrayList<E>
     // what is protected
     // protected is... public in the packege, private outside the package
     protected final static int INITIAL_CAPACITY = 10;
@@ -31,6 +31,7 @@ public class ArrayList<E> implements Iterable<E>{ // Parameter ex. ArrayList<E>
         }
     }
     public void add(E e) {
+        ensureCapacity();
         add(size, e);
     }
 
