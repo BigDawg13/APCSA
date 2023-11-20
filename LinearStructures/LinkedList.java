@@ -1,6 +1,8 @@
 package LinearStructures;
 
-public class LinkedList<E> {
+import java.util.Iterator;
+
+public class LinkedList<E> implements Iterable<E> {
     private int size = 0;
 
     private Node<E> head, tail;
@@ -178,10 +180,10 @@ public class LinkedList<E> {
                 current = current.next;
             }
             current.element = e;
+            return e;
         }
+        return e;
     }
-
-    
 
     public void clear() {
         size = 0;
@@ -192,10 +194,32 @@ public class LinkedList<E> {
     // find a better answer to this question
     private static class Node<E> {
         E element;
-        Node next;
+        Node<E> next;
 
         public Node(E element) {
             this.element = element;
+        }
+    }
+
+        public Iterator<E> iterator() {
+        return new LinkedListIterator();
+    }
+
+    private class LinkedListIterator implements Iterator<E> {
+        private Node<E> current = head;
+
+        @Override
+        public boolean hasNext() {
+            return (current.next != null);
+        }
+        @Override
+        public E next() {
+            current = current.next;
+            return current.next.element;
+        }
+        @Override
+        public void remove() {
+            LinkedList.this.remove(indexOf(current.element));
         }
     }
 }
