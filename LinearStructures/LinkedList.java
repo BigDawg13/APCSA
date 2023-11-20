@@ -49,6 +49,17 @@ public class LinkedList<E> {
         return -1;
     }
 
+    public int lastIndexOf(E e) {
+        if(size == 0) return -1;
+        int index = -1;
+        Node<E> current = head;
+        for(int i = 0; i < size; i++) {
+            current = current.next;
+            if(e == current) index = i; // Use .equals? Ask Clark
+        }
+        return index;
+    }
+
     public void addFirst(E e) {
         Node<E> newNode = new Node<>(e);
         newNode.next = head; // head is like index 0 of linked list
@@ -66,6 +77,7 @@ public class LinkedList<E> {
         } else {
             tail.next = newNode; // we are moving the tail forward to the end
             tail = tail.next;
+            size++;
         }
     }
 
@@ -118,11 +130,54 @@ public class LinkedList<E> {
                 current = current.next;
             }
 
-            Node<E> temp = tail;
+            Node<E> temp = current.next;
+            temp = null;
+            current.next = (current.next).next;
             tail = current;
             tail.next = null;
             size--;
             return temp.element;
+        }
+    }
+
+    public E remove(int index) {
+        if(size == 0) return null;
+        else if(size == 1) {
+            Node<E> temp = head;
+            clear();
+            return temp.element;
+        } else {
+            Node<E> current = head;
+            for(int i = 1; i < index - 1; i++) {
+                current = current.next; // advance the pointer
+            }
+            Node<E> temp = current.next;
+            current.next = (current.next).next;
+            size--;
+            return temp.element;
+        }
+    }
+
+    public E get(int index) {
+        if(size == 0) return null;
+        checkIndex(index);
+        Node<E> current = head;
+        for(int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        return current.element;
+    }
+
+    public E set(int index, E e) {
+        if(size == 0) addFirst(e);
+        else if(index >= size) addLast(e);
+        else {
+            //checkIndex(index);
+            Node<E> current = head;
+            for(int i = 0; i < index; i++) {
+                current = current.next;
+            }
+            current.element = e;
         }
     }
 
