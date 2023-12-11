@@ -1,8 +1,6 @@
-public class view {
-    model mod = new model();
-    view(model mod) {
-        this.mod = mod;
-    }
+public class View extends Control {
+    Model mod = new Model();
+    View() {}
 
     public void printBoard() {
         for(String[] line : mod.getBoard()) {
@@ -13,4 +11,5 @@ public class view {
         }
         System.out.println();
     }
+    public Model getM() { return mod; }
 }

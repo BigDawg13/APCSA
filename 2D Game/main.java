@@ -1,8 +1,8 @@
 
-public class main {
+public class Main {
     public static void main(String[] args) {
-        model m = new model();
-        view v = new view(m);
+        Model m = new Model();
+        View v = new View(m);
         v.printBoard();
     }
 }
