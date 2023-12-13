@@ -25,26 +25,24 @@ public class Control extends Model {
    public void move(Player p, int dir, int dis) {
        boolean done = false;
        while(!done) {
-           Scanner scanner = new Scanner(System.in);
-           int input = scanner.nextInt();
-           switch(input) {
+           switch(dir) {
                case 1:
-               if(Bounds(p.getRow() + dis, p.getCol(), mod).equals("Wall")) System.out.println("Invalid Movement - Try Again");
-               else if(Bounds(p.getRow() + dis, p.getCol(), mod).equals("Door")) {
-                   p.setRoomIn(mod.roomCheck(p.getRow() + dis, p.getCol()));
-                   mod.replace(p, p.getRow() + dis, p.getCol());
-                   done = true;
-               }
-               else {
-                   p.replace(p, p.getRow() + dis, p.getCol());
-                   done = true;
-               }
-               break;
-               case 2:
                if(Bounds(p.getRow() - dis, p.getCol(), mod).equals("Wall")) System.out.println("Invalid Movement - Try Again");
                else if(Bounds(p.getRow() - dis, p.getCol(), mod).equals("Door")) {
                    p.setRoomIn(mod.roomCheck(p.getRow() - dis, p.getCol()));
                    mod.replace(p, p.getRow() - dis, p.getCol());
+                   done = true;
+               }
+               else {
+                   p.replace(p, p.getRow() - dis, p.getCol());
+                   done = true;
+               }
+               break;
+               case 2:
+               if(Bounds(p.getRow() + dis, p.getCol(), mod).equals("Wall")) System.out.println("Invalid Movement - Try Again");
+               else if(Bounds(p.getRow() + dis, p.getCol(), mod).equals("Door")) {
+                   p.setRoomIn(mod.roomCheck(p.getRow() + dis, p.getCol()));
+                   mod.replace(p, p.getRow() + dis, p.getCol());
                    done = true;
                }
                else {
