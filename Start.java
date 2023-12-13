@@ -1,4 +1,4 @@
-import LinearStructures.ArrayList;
+/*import LinearStructures.ArrayList;
 import java.util.LinkedList;
 
 public class Start {
@@ -21,4 +21,4 @@ public class Start {
             System.out.println(s);
         }
     }
-}
+}*/
