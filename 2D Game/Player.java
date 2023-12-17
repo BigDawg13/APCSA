@@ -11,8 +11,9 @@ public class Player extends Model {
    public ArrayList<Card> hand = new ArrayList<>();
 
 
-   public Player(String charName) {
+   public Player(String charName, String roomIn) {
        this.charName = charName;
+       this.roomIn = roomIn;
    }
    public Player() {}
 
@@ -40,6 +41,7 @@ public class Player extends Model {
    public int findCardIndex(Card c) {
        for(int i = 0;  i < hand.size(); i++) {
            if(c.getName().equals(hand.get(i).getName())) return i;
+           System.out.println("ACTIVATION");
        }
        return -1;
    }
