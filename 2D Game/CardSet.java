@@ -17,4 +17,14 @@ public class CardSet extends Card{
        }
        return -1;
    }
+
+   public ArrayList<Card> getHand() { return set; }
+
+   public String getSetString() {
+    String sum = "";
+    for(int i = 0; i < set.size(); i++) {
+        sum = sum + set.get(i).getName() + ", ";
+    }
+    return sum;
+   }
 }
